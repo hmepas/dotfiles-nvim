@@ -59,20 +59,24 @@ ChatGPT is always available regardless of the completion provider. It does not p
 *   `:ChatGPT`: Open the main chat window.
 *   `:ChatGPTEditWithInstructions`: Edit selected code with natural language.
 
-### Secrets Configuration
+### Configuration
 Secrets are read from local files in your home directory (to keep them out of the repo):
 
 | Provider | Secret File | Source (Bitwarden) |
 |---|---|---|
-| **Codeium / Windsurf** | `~/.windsurf-api-token` | `windsurf-api-token` |
+| **Codeium / Windsurf** | `~/.codeium/config.json` | `windsurf-api-token` |
 | **ChatGPT** | `~/.neovim-chatgpt-api-key` | `neovim-chatgpt` |
 | **Supermaven** | (Handled internally by plugin) | - |
 
 To set them up manually:
 ```bash
-echo "your-token-here" > ~/.windsurf-api-token
+# Codeium / Windsurf
+mkdir -p ~/.codeium
+echo '{"apiKey": "your-sk-ws-token-here"}' > ~/.codeium/config.json
+
+# ChatGPT
 echo "your-openai-key-here" > ~/.neovim-chatgpt-api-key
-chmod 600 ~/.windsurf-api-token ~/.neovim-chatgpt-api-key
+chmod 600 ~/.neovim-chatgpt-api-key
 ```
 
 ## Key Features
