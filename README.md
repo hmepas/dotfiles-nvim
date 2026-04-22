@@ -40,11 +40,26 @@ Lazy.nvim will automatically download and install all plugins. You can also run 
 nvim --headless "+Lazy! sync" +qa
 ```
 
-## AI Agents & Secrets
+## AI Agents & Usage
 
-This config supports multiple AI providers (Supermaven, Codeium/Windsurf, ChatGPT). By default, they are toggled via keymaps and require API keys/tokens.
+This configuration includes three AI assistants: two for real-time completion (inline) and one for interactive chat.
 
-### Configuration
+### 1. Real-time Completion (Inline)
+Only one provider is active at a time to avoid conflicts. You can toggle between them using these keymaps:
+
+*   `<leader>pas`: **[P]**lugins **[A]**I **[S]**upermaven toggle.
+*   `<leader>paw`: **[P]**lugins **[A]**I **[W]**indsurf (Codeium) toggle.
+*   `:AIOff`: Disable all inline AI completion.
+
+The statusline shows the active provider: `AI:SM` (Supermaven), `AI:CI` (Codeium/Windsurf), or `AI:OFF`.
+
+### 2. Interactive Chat (ChatGPT)
+ChatGPT is always available regardless of the completion provider. It does not provide inline suggestions but offers a dedicated interface:
+
+*   `:ChatGPT`: Open the main chat window.
+*   `:ChatGPTEditWithInstructions`: Edit selected code with natural language.
+
+### Secrets Configuration
 Secrets are read from local files in your home directory (to keep them out of the repo):
 
 | Provider | Secret File | Source (Bitwarden) |
