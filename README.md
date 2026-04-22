@@ -11,7 +11,7 @@ Ensure you have the latest stable or nightly version of Neovim.
 
 #### macOS
 ```bash
-brew install neovim git make unzip gcc ripgrep fd
+brew install neovim git make unzip gcc ripgrep fd go
 # Fonts
 brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font font-iosevka-nerd-font
@@ -19,7 +19,7 @@ brew install --cask font-hack-nerd-font font-iosevka-nerd-font
 
 #### Arch Linux
 ```bash
-sudo pacman -S --needed neovim git make unzip gcc ripgrep fd
+sudo pacman -S --needed neovim git make unzip gcc ripgrep fd go
 # Fonts
 sudo pacman -S ttf-hack-nerd ttf-iosevka-nerd
 ```
