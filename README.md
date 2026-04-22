@@ -24,6 +24,22 @@ sudo pacman -S --needed neovim git make unzip gcc ripgrep fd go
 sudo pacman -S ttf-hack-nerd ttf-iosevka-nerd
 ```
 
+##### Treesitter on Neovim 0.12+
+This config pins `nvim-treesitter` to the `main` branch (required for Neovim 0.12+).
+The new branch compiles parsers on the fly and requires the `tree-sitter` CLI binary,
+which on Arch ships as a **separate package** from the `tree-sitter` library:
+```bash
+sudo pacman -S --needed tree-sitter-cli
+```
+Without it `:TSUpdate` / `require('nvim-treesitter').install(...)` fails with
+`ENOENT: no such file or directory (cmd): 'tree-sitter'`.
+
+If you upgraded and parsers look broken, wipe the old install and let Lazy rebuild:
+```bash
+rm -rf ~/.local/share/nvim/lazy/nvim-treesitter
+nvim --headless "+Lazy! sync" +qa
+```
+
 ### 3. Clone this repository
 Cloning directly to `~/.config/nvim` is the recommended way as this repository is standalone:
 ```bash
