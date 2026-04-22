@@ -986,11 +986,21 @@ require('lazy').setup({
       vim.api.nvim_create_autocmd('FileType', {
         callback = function(args)
           local lang = vim.treesitter.language.get_lang(args.match)
-          if lang then
+          if not lang then return end
+          
+          -- Check if parser is installed via nvim-treesitter API if available
+          local ok_ts, ts = pcall(require, 'nvim-treesitter')
+          if ok_ts then
+             local installed = ts.get_installed and ts.get_installed('parsers') or {}
+             if not vim.tbl_contains(installed, lang) then return end
+          end
+
+          -- Use pcall to avoid hard errors in UI windows like lazy.nvim
+          pcall(function()
             vim.treesitter.start(args.buf, lang)
             -- Enable treesitter-based indentation
             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-          end
+          end)
         end,
       })
     end,
