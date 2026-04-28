@@ -118,6 +118,23 @@ vim.schedule(function()
   vim.o.clipboard = 'unnamedplus'
 end)
 
+if vim.fn.executable('wl-copy') == 1 then
+  vim.g.clipboard = {
+    name = 'WlClipboard',
+    copy = {
+      ['+'] = 'wl-copy',
+      ['*'] = 'wl-copy',
+    },
+    paste = {
+      ['+'] = 'wl-paste',
+      ['*'] = 'wl-paste',
+    },
+    cache_enabled = 1,
+  }
+end
+
+-- И оставляем твою настройку
+vim.opt.clipboard = "unnamedplus"
 -- Enable break indent
 vim.o.breakindent = true
 
