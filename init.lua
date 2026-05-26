@@ -126,8 +126,8 @@ if vim.fn.executable('wl-copy') == 1 then
       ['*'] = 'wl-copy',
     },
     paste = {
-      ['+'] = 'wl-paste',
-      ['*'] = 'wl-paste',
+      ['+'] = 'wl-paste --no-newline',
+      ['*'] = 'wl-paste --no-newline',
     },
     cache_enabled = 1,
   }
