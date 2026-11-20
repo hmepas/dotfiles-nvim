@@ -22,8 +22,8 @@ brew install --cask font-hack-nerd-font font-iosevka-nerd-font
 #### Arch Linux
 ```bash
 sudo pacman -S --needed neovim git make unzip gcc ripgrep fd go
-# Local AI completion (llama-server), AUR
-yay -S llama.cpp
+# Local AI completion (llama-server), AUR (NVIDIA CUDA)
+paru -S llama.cpp-cuda-git
 # Fonts
 sudo pacman -S ttf-hack-nerd ttf-iosevka-nerd
 ```
@@ -61,9 +61,12 @@ nvim --headless "+Lazy! sync" +qa
 ```
 
 ### 5. Download the completion model (optional)
-nvim starts `llama-server` itself, but on the very first start the model (~1.6GB) is downloaded and completion is unavailable until it finishes. To pre-download it, run once and stop with `Ctrl-C` after `listening on http://127.0.0.1:8012`:
+nvim starts `llama-server` itself, but on the very first start the model is downloaded and completion is unavailable until it finishes (~1.6GB on macOS, ~8.1GB on Linux). To pre-download it, run once and stop with `Ctrl-C` after `listening on http://127.0.0.1:8012`:
 ```bash
+# macOS
 llama-server --fim-qwen-1.5b-default --port 8012
+# Linux (GPU)
+llama-server --fim-qwen-7b-default --port 8012
 ```
 
 ## AI Agents & Usage
@@ -71,9 +74,9 @@ llama-server --fim-qwen-1.5b-default --port 8012
 This configuration includes two AI assistants: a local model for real-time completion (inline) and ChatGPT for interactive chat.
 
 ### 1. Real-time Completion (Inline, local)
-[llama.vim](https://github.com/ggml-org/llama.vim) + `llama-server` with Qwen2.5-Coder 1.5B (FIM). Runs fully on the machine, no code leaves it.
+[llama.vim](https://github.com/ggml-org/llama.vim) + `llama-server` with Qwen2.5-Coder (1.5B on macOS, 7B on Linux, FIM). Runs fully on the machine, no code leaves it.
 
-*   Requires `brew install llama.cpp`. nvim starts `llama-server` on port 8012 in the background if it is not running (model is downloaded on first start, ~1.6GB).
+*   Requires `llama.cpp` (`brew install llama.cpp` on macOS, `paru -S llama.cpp-cuda-git` on Arch). nvim starts `llama-server` on port 8012 in the background if it is not running (model is downloaded on first start).
 *   `<C-g>`: accept suggestion, `<C-;>`: accept word.
 *   `<leader>pal`: **[P]**lugins **[A]**I **[L]**lama toggle (`:LlamaToggle`, `:LlamaDisable`, `:LlamaEnable`).
 

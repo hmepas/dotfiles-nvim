@@ -17,7 +17,7 @@ The configuration is split into several parts to keep `init.lua` clean:
 Beyond the standard kickstart plugins, the following have been added:
 
 - **AI Assistants:**
-    - `llama.vim`: Local FIM code completion via `llama-server` (Qwen2.5-Coder 1.5B).
+    - `llama.vim`: Local FIM code completion via `llama-server` (Qwen2.5-Coder 1.5B on macOS, 7B on Linux).
     - `ChatGPT.nvim`: Interactive chat interface.
 - **File Management:**
     - `oil.nvim`: Edit directories as text buffers.
