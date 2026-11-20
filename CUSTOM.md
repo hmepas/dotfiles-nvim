@@ -17,8 +17,7 @@ The configuration is split into several parts to keep `init.lua` clean:
 Beyond the standard kickstart plugins, the following have been added:
 
 - **AI Assistants:**
-    - `supermaven-nvim`: High-performance code completion.
-    - `windsurf.vim`: (Formerly Codeium) AI completion with manual toggle.
+    - `llama.vim`: Local FIM code completion via `llama-server` (Qwen2.5-Coder 1.5B).
     - `ChatGPT.nvim`: Interactive chat interface.
 - **File Management:**
     - `oil.nvim`: Edit directories as text buffers.
@@ -33,7 +32,7 @@ Beyond the standard kickstart plugins, the following have been added:
 
 ## Key Differences from Kickstart
 
-1. **AI Switching Logic:** We use a custom module (`lua/custom/ai.lua`) to ensure only one AI completion provider is active at a time, avoiding keymap conflicts.
+1. **Local AI Completion:** `llama.vim` talks to a local `llama-server`; nvim auto-starts the server (`lua/custom/plugins/llama.lua`).
 2. **Modern Completion:** Shifted from `nvim-cmp` to `blink.cmp` for better performance and easier configuration.
-3. **Enhanced Statusline:** The statusline is reactive and displays which AI provider is currently active (`AI:SM` for Supermaven, `AI:CI` for Codeium/Windsurf).
+3. **Enhanced Statusline:** The statusline is reactive and displays which AI provider is currently active (`AI:LL` for llama.vim, `AI:OFF` when disabled).
 4. **Layout Independence:** Thanks to `langmapper`, all commands work regardless of your active keyboard layout.

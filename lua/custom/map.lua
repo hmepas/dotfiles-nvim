@@ -31,11 +31,4 @@ vim.keymap.set('n', '<leader>tl', function()
     vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = '[T]oggle [L]inter' })
 
-local ai = require 'custom.ai'
-ai.setup()
-
--- free up <leader>p (was paste) to avoid clashing with <leader>-pa* toggles
--- vim.keymap.del({'n', 'v'}, '<leader>p') not set 
-
-vim.keymap.set('n', '<leader>paw', ai.toggle_codeium, { desc = '[P]lugins [A]I [W]indsurf toggle' })
-vim.keymap.set('n', '<leader>pas', ai.toggle_supermaven, { desc = '[P]lugins [A]I [S]upermaven toggle' })
+vim.keymap.set('n', '<leader>pal', '<cmd>LlamaToggle<CR>', { desc = '[P]lugins [A]I [L]lama toggle' })
